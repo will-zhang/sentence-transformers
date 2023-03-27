@@ -24,8 +24,8 @@ class Transformer(nn.Module):
         super(Transformer, self).__init__()
         self.config_keys = ['max_seq_length', 'do_lower_case']
         self.do_lower_case = do_lower_case
-
-        config = AutoConfig.from_pretrained(model_name_or_path, trust_remote_code=True, **model_args, cache_dir=cache_dir)
+        print(model_args)
+        config = AutoConfig.from_pretrained(model_name_or_path, trust_remote_code=True, cache_dir=cache_dir)
         self._load_model(model_name_or_path, config, cache_dir, **model_args)
 
         self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_name_or_path if tokenizer_name_or_path is not None else model_name_or_path, cache_dir=cache_dir, **tokenizer_args)
