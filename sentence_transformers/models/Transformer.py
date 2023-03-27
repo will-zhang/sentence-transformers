@@ -42,13 +42,14 @@ class Transformer(nn.Module):
 
 
     def _load_model(self, model_name_or_path, config, cache_dir, **model_args):
+        
         """Loads the transformer model"""
         if isinstance(config, T5Config):
             self._load_t5_model(model_name_or_path, config, cache_dir, **model_args)
         elif isinstance(config, MT5Config):
             self._load_mt5_model(model_name_or_path, config, cache_dir, **model_args)
         else:
-            self.auto_model = AutoModel.from_pretrained(model_name_or_path, config=config, cache_dir=cache_dir, **model_args)
+            self.auto_model = AutoModel.from_pretrained(model_name_or_path, config=config, cache_dir=cache_dir, trust_remote_code=True)
 
     def _load_t5_model(self, model_name_or_path, config, cache_dir, **model_args):
         """Loads the encoder model from T5"""
